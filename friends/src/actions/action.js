@@ -8,7 +8,7 @@ export const LOGIN_START = 'LOGIN_START'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILED = 'LOGIN_FAILED'
 
-export default getData = () => {
+export const getData = () => {
   return (dispatch) => {
     dispatch({ type: GET_DATA_START })
 
@@ -26,7 +26,7 @@ export default getData = () => {
   }
 }
 
-export default login = (username, password) => {
+export const login = (username, password) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_START })
 
