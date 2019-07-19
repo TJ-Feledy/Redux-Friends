@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import axios from 'axios';
 import {Route,Link} from 'react-router-dom';
-import FriendList from './component/FriendList';
-import Friend from './component/Friend';
-import FriendForm from './component/FriendForm';
+import FriendList from './components/FriendList';
+import Friend from './components/Friend';
+import FriendForm from './components/FriendForm';
 
 
 class App extends React.Component {
