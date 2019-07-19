@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
+import '../App.css';
 import { Route, Link, withRouter } from 'react-router-dom';
-import FriendList from './components/FriendList';
-import Friend from './components/Friend';
-import FriendForm from './components/FriendForm';
+import FriendList from './FriendList';
+import Friend from './Friend';
+import FriendForm from './FriendForm';
 import { connect } from 'react-redux'
 import { getData } from '../actions/action'
 

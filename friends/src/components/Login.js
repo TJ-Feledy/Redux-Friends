@@ -23,6 +23,8 @@ class Login extends React.Component {
   handleSubmit = (evt) => {
     evt.preventDefault()
 
+    const { username, password } = this.state
+
     this.props.login(username, password)
       .then(() => {
         this.props.history.push('/')
@@ -40,8 +42,8 @@ class Login extends React.Component {
       <form onSubmit={this.handleSubmit}>
         {error && <p className='error'>{error}</p>}
 
-        <input type='text' name='username' placeholder='Username' value={username} on Change={this.handleChange} /><br />
-        <input type='password' name='password' placeholder='Password' value={password} on Change={this.handleChange} /><br />
+        <input type='text' name='username' placeholder='Username' value={username} onChange={this.handleChange} /><br />
+        <input type='password' name='password' placeholder='Password' value={password} onChange={this.handleChange} /><br />
 
         {isLoading ? <p>Logging in...</p> : <button type='submit'>Login</button>}
       </form>
