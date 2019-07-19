@@ -13,12 +13,11 @@ class App extends React.Component {
     this.props.getData()
   }
 
-  updateFriends = (friends) => {
-    this.setState({ friends })
-  }
+  // updateFriends = (friends) => {
+  //   this.setState({ friends })
+  // }
 
   render() {
-    const { friends } = this.props.friends
 
     return (
       <div className="App">
@@ -27,9 +26,9 @@ class App extends React.Component {
           <Link to='/add'>Add A Friend</Link>
         </nav>
 
-        <Route path='/' exact render={(props) => <FriendList {...props} friends={friends} updateFriends={this.updateFriends} />} />
-        <Route path='/friend/:id' render={props => <Friend {...props} friends={friends} updateFriends={this.updateFriends} />} />
-        <Route path='/add' render={props => <FriendForm {...props} updateFriends={this.updateFriends} />} />
+        <Route path='/' exact render={(props) => <FriendList {...props} />} />
+        <Route path='/friend/:id' render={props => <Friend {...props} />} />
+        <Route path='/add' render={props => <FriendForm {...props} />} />
       </div>
     );
   }
