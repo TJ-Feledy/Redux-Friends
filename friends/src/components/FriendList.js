@@ -1,8 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
 function FriendList(props) {
+
+  if (props.isLoading) {
+    return <p>Friends are loading...</p>
+  }
+
   return (
     <div className='friendList'>
       {props.friends.map(friend => {
@@ -19,4 +25,12 @@ function FriendList(props) {
   )
 }
 
-export default FriendList;
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.isLoading,
+    error: state.error,
+    friends: state.friends
+  }
+}
+
+export default connect(mapStateToProps)(FriendList);
