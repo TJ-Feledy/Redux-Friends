@@ -16,7 +16,7 @@ export const getData = () => {
       Authorization: localStorage.getItem('token'),
     }
 
-    axios.get('http://localhost:5000/', {headers})
+    axios.get('http://localhost:5000/api/friends', {headers})
       .then((res) => {
         dispatch({ type: GET_DATA_SUCCESS, payload: res.data })
       })
@@ -30,7 +30,7 @@ export const login = (username, password) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_START })
 
-    return axios.post('http://localhost:5000/login', {username, password})
+    return axios.post('http://localhost:5000/api/login', {username, password})
       .then((res) => {
         localStorage.setItem('token', res.data.token)
         dispatch({ type: LOGIN_SUCCESS })
