@@ -23,7 +23,7 @@ export const getData = () => {
         dispatch({ type: GET_DATA_SUCCESS, payload: res.data })
       })
       .catch((err) => {
-        dispatch({ type: GET_DATA_FAILED, payload: err.response.data })
+        dispatch({ type: GET_DATA_FAILED, payload: err.response })
       })
   }
 }
@@ -34,11 +34,11 @@ export const login = (username, password) => {
 
     return axios.post('http://localhost:5000/api/login/', {username, password})
       .then((res) => {
-        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('token', res.data.payload)
         dispatch({ type: LOGIN_SUCCESS })
       })
       .catch((err) => {
-        const payload = err.response ? err.response.data : err
+        const payload = err.response ? err.response : err
         dispatch({ type: LOGIN_FAILED, payload })
       })
   }

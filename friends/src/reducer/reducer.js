@@ -22,7 +22,7 @@ export default function(state = initialState, action) {
       }
     }
     case GET_DATA_SUCCESS: {
-      const { friends } = action.payload
+      const friends = action.payload
       return {
         ...state,
         isLoading: false,
