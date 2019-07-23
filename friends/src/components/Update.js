@@ -1,13 +1,16 @@
 import React from 'react'
 import axios from 'axios'
+import {updateFriend} from '../actions/action'
+import {connect} from 'react-redux'
 
 class Update extends React.Component {
   constructor(props) {
     super(props);
+    const friend = this.props.friends.find(friend => `${friend.id}` === this.props.match.params.id)
     this.state = {
-      name: props.friend.name,
-      age: props.friend.age,
-      email: props.friend.email,
+      name: friend.name,
+      age: friend.age,
+      email: friend.email,
       error: null
     }
   }
@@ -18,17 +21,9 @@ class Update extends React.Component {
     const payload = { name, age, email }
     const id = this.props.match.params.id
 
-    axios.put(`http://localhost:5000/friends/${id}`, payload)
-      .then((response) => {
-        this.setState({ error: null })
-        this.props.updateFriends(response.data)
-        this.props.history.push('/')
-      })
-      .catch((err) => {
-        console.log(err)
-        this.setState({ error: err })
-      })
+    this.props.updateFriend(payload,id)
 
+    this.props.history.push(`/friend/${id}`)
   }
 
   deleteFriend = evt => {
@@ -75,4 +70,14 @@ class Update extends React.Component {
   }
 }
 
-export default Update;
+const mapStateToProps = (state) => {
+  return {
+    friends: state.friends,
+    error: state.error
+  }
+}
+const mapDispatchToProps = {
+  updateFriend,
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Update);
