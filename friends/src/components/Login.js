@@ -41,6 +41,8 @@ class Login extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         {error && <p className='error'>{error}</p>}
+        
+        <h1 className='intro'>Login To Access Friends</h1>
 
         <input type='text' name='username' placeholder='Username' value={username} onChange={this.handleChange} /><br />
         <input type='password' name='password' placeholder='Password' value={password} onChange={this.handleChange} /><br />

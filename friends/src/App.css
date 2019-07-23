@@ -62,3 +62,10 @@ nav a:hover {
 .name {
   margin-top:  0;
 }
+
+.intro {
+  background: black;
+  color: white;
+  margin-top: 0;
+  padding: 20px;
+}
