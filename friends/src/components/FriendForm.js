@@ -6,22 +6,24 @@ class FriendForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 0,
       name: '',
-      age: '',
+      age: 0,
       email: '',
     }
   }
 
   newFriend = evt => {
     evt.preventDefault()
-    const {name,age,email} = this.state
-    const payload = {name,age,email}
+    const {id,name,age,email} = this.state
+    const payload = {id,name,age,email}
 
     this.props.addFriend(payload)
     
     this.setState({
+      id: 0,
       name: '',
-      age: '',
+      age: 0,
       email: '',
     })
 
