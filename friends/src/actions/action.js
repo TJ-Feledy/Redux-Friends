@@ -8,7 +8,9 @@ export const LOGIN_START = 'LOGIN_START'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILED = 'LOGIN_FAILED'
 
-export const ADD_FRIEND = 'ADD_FRIEND'
+export const ADD_FRIEND_START = 'ADD_FRIEND_START'
+export const ADD_FRIEND_SUCCESS = 'ADD_FRIEND_SUCCESS'
+export const ADD_FRIEND_FAILED = 'ADD_FRIEND_FAILED'
 
 export const getData = () => {
   return (dispatch) => {
@@ -44,10 +46,16 @@ export const login = (username, password) => {
   }
 }
 
-export const addFriend = () => {
+export const addFriend = (payload) => {
   return (dispatch) => {
-    dispatch({ type: ADD_FRIEND })
+    dispatch({ type: ADD_FRIEND_START })
 
-    return 
+    axios.post('http://localhost:5000/api/friends/', payload)
+      .then(res => {
+        dispatch({type: ADD_FRIEND_SUCCESS, payload: res.data})
+      })
+      .catch(err => {
+        dispatch({type: ADD_FRIEND_FAILED, payload: err.response})
+      })
   }
 }

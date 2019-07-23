@@ -1,6 +1,6 @@
 import React from 'react'
-import axios from 'axios'
 import {connect} from 'react-redux'
+import { addFriend } from '../actions/action'
 
 class FriendForm extends React.Component {
   constructor(props) {
@@ -9,25 +9,23 @@ class FriendForm extends React.Component {
       name: '',
       age: '',
       email: '',
-      error: null
     }
   }
 
-  addFriend = evt => {
+  newFriend = evt => {
     evt.preventDefault()
     const {name,age,email} = this.state
     const payload = {name,age,email}
 
-    axios.post('http://localhost:5000/friends',payload)
-      .then((response) => {
-        this.setState({error: null})
-        this.props.updateFriends(response.data)
-        this.props.history.push('/')
-      })
-      .catch((err) => {
-        this.setState({error: err.data.error})
-      })
-      
+    this.props.addFriend(payload)
+    
+    this.setState({
+      name: '',
+      age: '',
+      email: '',
+    })
+
+    this.props.history.push('/')
   }
 
   changeHandler = evt => {
@@ -41,7 +39,7 @@ class FriendForm extends React.Component {
 
     return (
       <div className='friendForm'>
-        <form onSubmit={this.addFriend} >
+        <form onSubmit={this.newFriend} >
           <h2 className='formHeader'>Add A Friend</h2>
           <input type='text' name='name' placeholder='Name' value={name} onChange={this.changeHandler} /><br />
           <input type='number' name='age' placeholder='Age' value={age} onChange={this.changeHandler} /><br />
@@ -53,4 +51,8 @@ class FriendForm extends React.Component {
   }
 }
 
-export default FriendForm;
+const mapDispatchToProps = {
+  addFriend,
+}
+
+export default connect(null, mapDispatchToProps)(FriendForm);
