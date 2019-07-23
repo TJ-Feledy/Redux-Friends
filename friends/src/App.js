@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Login from './components/Login'
 import PrivateRoute from './components/PrivateRoute'
+import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './components/Dashboard'
 import { Route } from 'react-router-dom'
 
@@ -16,6 +17,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <PrivateRoute exact path='/' component={Dashboard} />
+        <ProtectedRoute exact path='/add' component={Dashboard} />
         <Route exact path='/login' component={Login} />
       </div>
     );
