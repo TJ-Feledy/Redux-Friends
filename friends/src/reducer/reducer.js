@@ -11,6 +11,9 @@ import {
   UPDATE_FRIEND_START,
   UPDATE_FRIEND_SUCCESS,
   UPDATE_FRIEND_FAILED,
+  DELETE_FRIEND_START,
+  DELETE_FRIEND_SUCCESS,
+  DELETE_FRIEND_FAILED,
 } from '../actions/action'
 
 const initialState = {
@@ -101,6 +104,28 @@ export default function(state = initialState, action) {
       }
     }
     case UPDATE_FRIEND_FAILED: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload.msg,
+      }
+    }
+    case DELETE_FRIEND_START: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    }
+    case DELETE_FRIEND_SUCCESS: {
+      const friends = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        friends,
+        error: null,
+      }
+    }
+    case DELETE_FRIEND_FAILED: {
       return {
         ...state,
         isLoading: false,

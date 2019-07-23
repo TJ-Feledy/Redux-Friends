@@ -4,7 +4,6 @@ import Login from './components/Login'
 import PrivateRoute from './components/PrivateRoute'
 import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './components/Dashboard'
-import Friend from './components/Friend'
 import { Route } from 'react-router-dom'
 
 
@@ -19,7 +18,8 @@ class App extends React.Component {
       <div className="App">
         <PrivateRoute exact path='/' component={Dashboard} />
         <ProtectedRoute exact path='/add' component={Dashboard} />
-        <Route path='/friend/:id' render={props => <Friend {...props} />} />
+        <ProtectedRoute exact path='/friend/:id' component={Dashboard} />
+        <ProtectedRoute exact path='/friend/:id/Update' component={Dashboard} />
         <Route exact path='/login' component={Login} />
       </div>
     );

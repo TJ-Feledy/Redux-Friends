@@ -16,6 +16,10 @@ export const UPDATE_FRIEND_START = 'UPDATE_FRIEND_START'
 export const UPDATE_FRIEND_SUCCESS = 'UPDATE_FRIEND_SUCCESS'
 export const UPDATE_FRIEND_FAILED = 'UPDATE_FRIEND_FAILED'
 
+export const DELETE_FRIEND_START = 'DELETE_FRIEND_START'
+export const DELETE_FRIEND_SUCCESS = 'DELETE_FRIEND_SUCCESS'
+export const DELETE_FRIEND_FAILED = 'DELETE_FRIEND_FAILED'
+
 export const getData = () => {
   return (dispatch) => {
     dispatch({ type: GET_DATA_START })
@@ -82,6 +86,24 @@ export const updateFriend = (payload, id) => {
       })
       .catch(err => {
         dispatch({type: UPDATE_FRIEND_FAILED, payload: err.response})
+      })
+  }
+}
+
+export const deleteFriend = (id) => {
+  return (dispatch) => {
+    dispatch({type: DELETE_FRIEND_START})
+
+    const headers = {
+      Authorization: localStorage.getItem('token')
+    }
+
+    axios.delete(`http://localhost:5000/friends/${id}`, payload, {headers})
+      .then(res => {
+        dispatch({type: DELETE_FRIEND_SUCCESS, payload: res.data})
+      })
+      .catch(err => {
+        dispatch({type: DELETE_FRIEND_FAILED, payload: err.response})
       })
   }
 }
