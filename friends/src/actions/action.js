@@ -98,7 +98,7 @@ export const deleteFriend = (id) => {
       Authorization: localStorage.getItem('token')
     }
 
-    axios.delete(`http://localhost:5000/friends/${id}`, payload, {headers})
+    axios.delete(`http://localhost:5000/api/friends/${id}`, {headers})
       .then(res => {
         dispatch({type: DELETE_FRIEND_SUCCESS, payload: res.data})
       })

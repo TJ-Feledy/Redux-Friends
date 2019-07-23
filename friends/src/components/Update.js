@@ -1,6 +1,6 @@
 import React from 'react'
-import axios from 'axios'
 import {updateFriend} from '../actions/action'
+import {deleteFriend} from '../actions/action'
 import {connect} from 'react-redux'
 
 class Update extends React.Component {
@@ -31,17 +31,8 @@ class Update extends React.Component {
 
     const id = this.props.match.params.id
 
-    axios.delete(`http://localhost:5000/friends/${id}`)
-      .then((response) => {
-        this.setState({ error: null })
-        this.props.updateFriends(response.data)
-        this.props.history.push('/')
-      })
-      .catch((err) => {
-        console.log(err)
-        this.setState({ error: err })
-      })
-
+    this.props.deleteFriend(id)
+    this.props.history.push('/')
   }
 
   changeHandler = evt => {
@@ -78,6 +69,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = {
   updateFriend,
+  deleteFriend,
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Update);
