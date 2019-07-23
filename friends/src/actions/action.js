@@ -12,6 +12,10 @@ export const ADD_FRIEND_START = 'ADD_FRIEND_START'
 export const ADD_FRIEND_SUCCESS = 'ADD_FRIEND_SUCCESS'
 export const ADD_FRIEND_FAILED = 'ADD_FRIEND_FAILED'
 
+export const UPDATE_FRIEND_START = 'UPDATE_FRIEND_START'
+export const UPDATE_FRIEND_SUCCESS = 'UPDATE_FRIEND_SUCCESS'
+export const UPDATE_FRIEND_FAILED = 'UPDATE_FRIEND_FAILED'
+
 export const getData = () => {
   return (dispatch) => {
     dispatch({ type: GET_DATA_START })
@@ -60,6 +64,24 @@ export const addFriend = (payload) => {
       })
       .catch(err => {
         dispatch({type: ADD_FRIEND_FAILED, payload: err.response})
+      })
+  }
+}
+
+export const updateFriend = (payload, id) => {
+  return (dispatch) => {
+    dispatch({type: UPDATE_FRIEND_START})
+
+    const headers = {
+      Authorization: localStorage.getItem('token'),
+    }
+
+    axios.put(`http://localhost:5000/api/friends/${id}`, payload, {headers})
+      .then(res => {
+        dispatch({type: UPDATE_FRIEND_SUCCESS, payload: res.data})
+      })
+      .catch(err => {
+        dispatch({type: UPDATE_FRIEND_FAILED, payload: err.response})
       })
   }
 }

@@ -5,6 +5,12 @@ import {
   GET_DATA_START,
   GET_DATA_SUCCESS,
   GET_DATA_FAILED,
+  ADD_FRIEND_START,
+  ADD_FRIEND_SUCCESS,
+  ADD_FRIEND_FAILED,
+  UPDATE_FRIEND_START,
+  UPDATE_FRIEND_SUCCESS,
+  UPDATE_FRIEND_FAILED,
 } from '../actions/action'
 
 const initialState = {
@@ -57,6 +63,51 @@ export default function(state = initialState, action) {
         error: action.payload.msg,
       }
     }
+    case ADD_FRIEND_START: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    }
+    case ADD_FRIEND_SUCCESS: {
+      const friends = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        friends,
+        error: null,
+      }
+    }
+    case ADD_FRIEND_FAILED: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload.msg,
+      }
+    }
+    case UPDATE_FRIEND_START: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    }
+    case UPDATE_FRIEND_SUCCESS: {
+      const friends = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        friends,
+        error: null,
+      }
+    }
+    case UPDATE_FRIEND_FAILED: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload.msg,
+      }
+    }
+
     default:
       return state
   }

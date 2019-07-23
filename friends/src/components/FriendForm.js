@@ -7,7 +7,7 @@ class FriendForm extends React.Component {
     super(props);
     this.state = {
       name: '',
-      age: 0,
+      age: '',
       email: '',
     }
   }
@@ -21,7 +21,7 @@ class FriendForm extends React.Component {
     
     this.setState({
       name: '',
-      age: 0,
+      age: '',
       email: '',
     })
 
