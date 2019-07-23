@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background: darkgray;
+  background-size: cover;
+  height: 100vh;
 }
 
 .App-logo {
@@ -68,4 +71,8 @@ nav a:hover {
   color: white;
   margin-top: 0;
   padding: 20px;
+}
+
+.friend {
+  color: white;
 }
